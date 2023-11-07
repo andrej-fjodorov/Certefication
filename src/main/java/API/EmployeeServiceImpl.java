@@ -28,7 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         String url = faker.internet().url();
         String phone = String.valueOf(faker.number().digits(10));
         String birthDate = faker.date().birthday().toString();
-        return new Employee(id, firstName, lastName, middleName, companyId, email, url, phone, birthDate, false);
+        return new Employee();
     }
 
     @Override
