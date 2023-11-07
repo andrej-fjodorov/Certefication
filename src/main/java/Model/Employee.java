@@ -14,17 +14,7 @@ public class Employee {
     private String birthdate;
     private boolean isActive;
 
-    public Employee(int id, String firstName, String lastName, String middleName, int companyId, String email, String url, String phone, String birthdate, boolean isActive) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.companyId = companyId;
-        this.email = email;
-        this.url = url;
-        this.phone = phone;
-        this.birthdate = birthdate;
-        this.isActive = isActive;
+    public Employee() {
     }
 
     public int getId() {

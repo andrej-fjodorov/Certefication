@@ -21,7 +21,7 @@ public class CompanyServiceImpl implements CompanyService{
         String companyName =  faker.twinPeaks().character();
         String companyDescription =  faker.twinPeaks().quote();
 
-        return new Company(companyId, companyName, companyDescription, true);
+        return new Company();
     }
 
     @Override

@@ -1,4 +1,5 @@
 import API.CompanyService;
+import API.CompanyServiceImpl;
 import API.EmployeeService;
 import API.EmployeeServiceImpl;
 import DB.CompanyRepository;
@@ -29,16 +30,16 @@ public class CertificationTest {
     @DisplayName("1. Проверить, что список компаний фильтруется по параметру active")
     public void filterByIsActive() throws SQLException {
         step("Получить список компаний");
-        List<Company> companiesA = companyApiService.getAll();
+        List<Company> companiesA = companyApiService.getAll(true);
         step("Получить список компаний БД");
         List<Company> companiesB = companyService.getAll();
-        step("Сравнить результат", () -> {
+        step("Сравнить результат");
             Assertions.assertEquals(companiesA.size(), companiesB.size());
-        });
+
         step("Получить cписок компаний isActive");
         List<Company> companiesIsActiveA = companyApiService.getAll(true);
         step("Получить cписок компаний isActive");
-        List<Company companiesIsActiveB = companyService.getAll(true);
+        List<Company>companiesIsActiveB = companyService.getAll(true);
         step("Сравнить результат");
         Assertions.assertEquals(companiesIsActiveA.size(), companiesIsActiveB.size());
         ;
@@ -46,7 +47,7 @@ public class CertificationTest {
 
     @Test
     @DisplayName("2. Проверить, что неактивный сотрудник не отображается в списке")
-    public void addEmployeeOfNotExistingCompany() {
+    public void addEmployeeOfNotExistingCompany() throws SQLException {
         step("Создаем компанию в БД");
         step("Создаем неактивного сотрудника в БД");
         Company companiesIsActiveB = companyService.getById(2);

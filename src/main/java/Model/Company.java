@@ -9,11 +9,7 @@ public class Company {
     private String description;
     private boolean isActive;
 
-    public Company(int id, String name, String description, boolean isActive) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.isActive = isActive;
+    public Company() {
     }
 
     public int getId() {

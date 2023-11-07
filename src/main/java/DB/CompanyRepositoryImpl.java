@@ -28,11 +28,10 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         ResultSet resultSet = connection.createStatement().executeQuery(GET_ALL_COMPANY);
         List<Company> list = new ArrayList<>();
         while (resultSet.next()) {
-            Company company = new Company( id,"name", "description",true);
+            Company company = new Company();
             company.setId(resultSet.getInt("id"));
             company.setName(resultSet.getString("name"));
             company.setDescription(resultSet.getString("description"));
-            company.setDeletedAt(resultSet.getTimestamp("deleted_at"));
             list.add(company);
         }
         return list;
@@ -50,7 +49,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         ResultSet resultSet = connection.createStatement().executeQuery(GET_ALL_ACTIVE_COMPANY);
         List<Company> list = new ArrayList<>();
         while (resultSet.next()) {
-            Company company = new Company("id","name", "description",true);
+            Company company = new Company();
             company.setId(resultSet.getInt("id"));
             company.setActive(resultSet.getBoolean("is_active"));
             company.setName(resultSet.getString("name"));
@@ -78,7 +77,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         statement.setInt(1, id);
         ResultSet set = statement.executeQuery();
         set.next();
-        Company company = new Company(id,"name", "description",true);
+        Company company = new Company();
         company.setDeletedAt(set.getTimestamp("deleted_at"));
         return company;
     }
@@ -95,7 +94,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         statement.executeUpdate();
         ResultSet resultSet = connection.createStatement().executeQuery(GET_LAST_ADDED_COMPANY);
         resultSet.next();
-        Company company = new Company("id");
+        Company company = new Company();
         company.setId(resultSet.getInt("id"));
         return company.getId();
     }
@@ -112,7 +111,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         statement.executeUpdate();
         ResultSet resultSet = connection.createStatement().executeQuery(GET_LAST_ADDED_COMPANY);
         resultSet.next();
-        Company company = new Company("name", "description");
+        Company company = new Company();
         company.setId(resultSet.getInt("id"));
         return company.getId();
     }
