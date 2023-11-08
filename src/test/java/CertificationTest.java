@@ -31,16 +31,16 @@ public class CertificationTest {
     public void filterByIsActive() throws SQLException {
         step("Получить список компаний");
         List<Company> companiesA = companyApiService.getAll(true);
-        step("Получить список компаний БД");
-        List<Company> companiesB = companyService.getAll();
-        step("Сравнить результат");
+        step("Получить список из компаний БД");
+        List<Company> companiesB = companyService.getAll(true);
+        step("Сравнить результаты");
             Assertions.assertEquals(companiesA.size(), companiesB.size());
 
         step("Получить cписок компаний isActive");
         List<Company> companiesIsActiveA = companyApiService.getAll(true);
-        step("Получить cписок компаний isActive");
+        step("Получить cписок компаний isActive из бд");
         List<Company>companiesIsActiveB = companyService.getAll(true);
-        step("Сравнить результат");
+        step("Сравнить результаты");
         Assertions.assertEquals(companiesIsActiveA.size(), companiesIsActiveB.size());
         ;
     }
@@ -51,7 +51,7 @@ public class CertificationTest {
         step("Создаем компанию в БД");
         step("Создаем неактивного сотрудника в БД");
         Company companiesIsActiveB = companyService.getById(2);
-        Employee employeE = employeeAPIService.getRandomEmployee(2);
+        Employee employeE = employeeService.getById(2);
     }
     @Test
     @DisplayName("3. Проверить, что у удаленной компании проставляется в БД поле deletedAt")
